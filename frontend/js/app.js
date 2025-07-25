@@ -1,3 +1,37 @@
+// Sidebar auto-collapse and expand on mouse hover
+document.addEventListener('DOMContentLoaded', function () {
+  const sidebar = document.getElementById('sidebar');
+  let isCollapsed = false;
+
+  // Collapse sidebar by default on small screens
+  function autoCollapseSidebar() {
+    if (window.innerWidth <= 768) {
+      sidebar.classList.add('collapsed');
+      isCollapsed = true;
+    } else {
+      sidebar.classList.remove('collapsed');
+      isCollapsed = false;
+    }
+  }
+  autoCollapseSidebar();
+  window.addEventListener('resize', autoCollapseSidebar);
+
+  // Expand sidebar on mouse enter, collapse on mouse leave
+  sidebar.addEventListener('mouseenter', function () {
+    sidebar.classList.remove('collapsed');
+  });
+  sidebar.addEventListener('mouseleave', function () {
+    if (window.innerWidth > 768) {
+      sidebar.classList.add('collapsed');
+    }
+  });
+
+  // Start collapsed on desktop for modern look
+  if (window.innerWidth > 768) {
+    sidebar.classList.add('collapsed');
+    isCollapsed = true;
+  }
+});
 // Sidebar collapse/expand logic
 document.addEventListener('DOMContentLoaded', function () {
   const sidebar = document.getElementById('sidebar');

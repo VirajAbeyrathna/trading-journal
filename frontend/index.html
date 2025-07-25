@@ -11,30 +11,29 @@
 <body>
   <div class="row flex-nowrap">
       <!-- Sidebar -->
-      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-primary text-white min-vh-100" id="sidebar">
-        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 sidebar bg-primary text-white min-vh-100" id="sidebar">
+        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3 sidebar-inner">
           <!-- Navigation Links -->
-          <ul class="nav nav-pills flex-column w-100">
+          <ul class="nav nav-pills flex-column w-100 sidebar-nav">
             <li class="nav-item">
-              <a href="#home" class="nav-link text-white active">
-                <i class="fa-solid fa-house me-2"></i> Home
+              <a href="#home" class="nav-link text-white active sidebar-link" title="Home">
+                <i class="fa-solid fa-house"></i>
+                <span class="sidebar-text">Home</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="analysis.html" class="nav-link text-white">
-                <i class="fa-solid fa-chart-line me-2"></i> Analysis
+              <a href="analysis.html" class="nav-link text-white sidebar-link" title="Analysis">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="sidebar-text">Analysis</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="settings.html" class="nav-link text-white">
-                <i class="fa-solid fa-gear me-2"></i> Settings
+              <a href="settings.html" class="nav-link text-white sidebar-link" title="Settings">
+                <i class="fa-solid fa-gear"></i>
+                <span class="sidebar-text">Settings</span>
               </a>
             </li>
           </ul>
-          <!-- Toggle Button -->
-          <button id="sidebarToggle" class="btn btn-outline-light mt-auto">
-            <i class="fa fa-angle-double-left"></i>
-          </button>
         </div>
       </div>
       <!-- Main Content -->
