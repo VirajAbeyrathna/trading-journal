@@ -1,3 +1,55 @@
+// Sidebar hamburger open/close logic
+document.addEventListener('DOMContentLoaded', function () {
+  const sidebar = document.getElementById('sidebar');
+  const hamburger = document.getElementById('sidebarHamburger');
+  let isCollapsed = false;
+
+  // Collapse sidebar by default on small screens
+  function autoCollapseSidebar() {
+    if (window.innerWidth <= 768) {
+      sidebar.classList.add('collapsed');
+      isCollapsed = true;
+    } else {
+      sidebar.classList.remove('collapsed');
+      isCollapsed = false;
+    }
+    updateHamburgerVisibility();
+  }
+  function updateHamburgerVisibility() {
+    if (sidebar.classList.contains('collapsed')) {
+      hamburger.style.display = 'flex';
+    } else {
+      hamburger.style.display = 'none';
+    }
+  }
+  autoCollapseSidebar();
+  window.addEventListener('resize', autoCollapseSidebar);
+
+  // Expand sidebar on mouse enter, collapse on mouse leave
+  sidebar.addEventListener('mouseenter', function () {
+    sidebar.classList.remove('collapsed');
+    updateHamburgerVisibility();
+  });
+  sidebar.addEventListener('mouseleave', function () {
+    if (window.innerWidth > 768) {
+      sidebar.classList.add('collapsed');
+      updateHamburgerVisibility();
+    }
+  });
+
+  // Hamburger click to open sidebar
+  hamburger.addEventListener('click', function (e) {
+    sidebar.classList.remove('collapsed');
+    updateHamburgerVisibility();
+  });
+
+  // Start collapsed on desktop for modern look
+  if (window.innerWidth > 768) {
+    sidebar.classList.add('collapsed');
+    isCollapsed = true;
+    updateHamburgerVisibility();
+  }
+});
 // Sidebar auto-collapse and expand on mouse hover
 document.addEventListener('DOMContentLoaded', function () {
   const sidebar = document.getElementById('sidebar');

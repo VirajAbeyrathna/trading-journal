@@ -12,24 +12,31 @@
   <div class="row flex-nowrap">
       <!-- Sidebar -->
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 sidebar bg-primary text-white min-vh-100" id="sidebar">
+        <div class="sidebar-toggle-btn-wrapper">
+          <button id="sidebarHamburger" class="sidebar-hamburger" title="Open sidebar" style="display:none;">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3 sidebar-inner">
           <!-- Navigation Links -->
           <ul class="nav nav-pills flex-column w-100 sidebar-nav">
-            <li class="nav-item">
+            <li class="nav-item sidebar-icon-sep">
               <a href="#home" class="nav-link text-white active sidebar-link" title="Home">
-                <i class="fa-solid fa-house"></i>
+                <div class="sidebar-icon-wrap"><i class="fa-solid fa-house"></i></div>
                 <span class="sidebar-text">Home</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item sidebar-icon-sep">
               <a href="analysis.html" class="nav-link text-white sidebar-link" title="Analysis">
-                <i class="fa-solid fa-chart-line"></i>
+                <div class="sidebar-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
                 <span class="sidebar-text">Analysis</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item sidebar-icon-sep">
               <a href="settings.html" class="nav-link text-white sidebar-link" title="Settings">
-                <i class="fa-solid fa-gear"></i>
+                <div class="sidebar-icon-wrap"><i class="fa-solid fa-gear"></i></div>
                 <span class="sidebar-text">Settings</span>
               </a>
             </li>

@@ -1,3 +1,58 @@
+/* Hamburger button for collapsed sidebar */
+.sidebar-toggle-btn-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.sidebar-hamburger {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+}
+.sidebar-hamburger .bar {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.sidebar.collapsed .sidebar-toggle-btn-wrapper {
+  display: flex;
+}
+.sidebar:not(.collapsed) .sidebar-toggle-btn-wrapper {
+  display: none;
+}
+/* Sidebar icon separation */
+.sidebar-icon-sep {
+  margin-bottom: 1.2rem;
+}
+.sidebar-icon-wrap {
+  background: rgba(255,255,255,0.12);
+  border-radius: 0.7rem;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: background 0.2s;
+}
+.sidebar.collapsed .sidebar-icon-wrap {
+  margin-right: 0;
+}
+.sidebar-icon-wrap:hover {
+  background: #4f8cff;
+}
 /* Modern auto-collapsing sidebar styles */
 .sidebar {
   transition: width 0.3s, box-shadow 0.3s;
