@@ -52,65 +52,63 @@
         <!-- Tab Content -->
         <div class="tab-content" id="tabContent">
           <div class="tab-pane fade show active" id="home">
+            <div class="container p-3 custom-mix-container mb-3">
+              <form id="addTradeForm" class="row g-3 mb-0">
+                <div class="col-md-3">
+                  <label for="instrument" class="form-label">Instrument</label>
+                  <select class="form-select" id="instrument">
+                    <option value="NASDAQ">NASDAQ</option>
+                    <option value="S&P500">S&amp;P500</option>
+                    <option value="DOWJONES">DOWJONES</option>
+                    <option value="add">+ Add New</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label for="strategy" class="form-label">Strategy</label>
+                  <select class="form-select" id="strategy">
+                    <option value="Breakout">Breakout</option>
+                    <option value="Reversal">Reversal</option>
+                    <option value="Scalping">Scalping</option>
+                    <option value="add">+ Add New</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <label for="rr" class="form-label">RR</label>
+                  <select class="form-select" id="rr">
+                    <option value="1RR">1RR</option>
+                    <option value="2RR">2RR</option>
+                    <option value="3RR">3RR</option>
+                    <option value="5RR">5RR</option>
+                    <option value="add">+ Add New</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <label for="tradeDate" class="form-label">Date</label>
+                  <div class="input-group">
+                    <button class="btn btn-outline-secondary" type="button" id="prevDate" title="Previous Date">
+                      <span class="bi bi-chevron-left"></span>
+                    </button>
+                    <input type="date" class="form-control" id="tradeDate">
+                    <button class="btn btn-outline-secondary" type="button" id="nextDate" title="Next Date">
+                      <span class="bi bi-chevron-right"></span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <label class="form-label">Result</label>
+                  <div class="btn-group w-100" role="group" aria-label="Profit or Loss">
+                    <input type="radio" class="btn-check" name="result" id="profit" value="profit" autocomplete="off" checked>
+                    <label class="btn btn-outline-success" for="profit">Profit (+)</label>
+                    <input type="radio" class="btn-check" name="result" id="loss" value="loss" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="loss">Loss (–)</label>
+                  </div>
+                </div>
+                <div class="col-12 text-end">
+                  <button type="submit" class="btn btn-primary">Add Trade</button>
+                </div>
+              </form>
+            </div>
             <div class="container p-3 custom-mix-container">
-              <!-- Home tab content will go here -->
-              //<h3>Home</h3>
-              <form id="addTradeForm" class="row g-3 mb-4">
-              <div class="col-md-3">
-                <label for="instrument" class="form-label">Instrument</label>
-                <select class="form-select" id="instrument">
-                  <option value="NASDAQ">NASDAQ</option>
-                  <option value="S&P500">S&amp;P500</option>
-                  <option value="DOWJONES">DOWJONES</option>
-                  <option value="add">+ Add New</option>
-                </select>
-              </div>
-              <div class="col-md-3">
-                <label for="strategy" class="form-label">Strategy</label>
-                <select class="form-select" id="strategy">
-                  <option value="Breakout">Breakout</option>
-                  <option value="Reversal">Reversal</option>
-                  <option value="Scalping">Scalping</option>
-                  <option value="add">+ Add New</option>
-                </select>
-              </div>
-              <div class="col-md-2">
-                <label for="rr" class="form-label">RR</label>
-                <select class="form-select" id="rr">
-                  <option value="1RR">1RR</option>
-                  <option value="2RR">2RR</option>
-                  <option value="3RR">3RR</option>
-                  <option value="5RR">5RR</option>
-                  <option value="add">+ Add New</option>
-                </select>
-              </div>
-              <div class="col-md-2">
-                <label for="tradeDate" class="form-label">Date</label>
-                <div class="input-group">
-                  <button class="btn btn-outline-secondary" type="button" id="prevDate" title="Previous Date">
-                    <span class="bi bi-chevron-left"></span>
-                  </button>
-                  <input type="date" class="form-control" id="tradeDate">
-                  <button class="btn btn-outline-secondary" type="button" id="nextDate" title="Next Date">
-                    <span class="bi bi-chevron-right"></span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <label class="form-label">Result</label>
-                <div class="btn-group w-100" role="group" aria-label="Profit or Loss">
-                  <input type="radio" class="btn-check" name="result" id="profit" value="profit" autocomplete="off" checked>
-                  <label class="btn btn-outline-success" for="profit">Profit (+)</label>
-                  <input type="radio" class="btn-check" name="result" id="loss" value="loss" autocomplete="off">
-                  <label class="btn btn-outline-danger" for="loss">Loss (–)</label>
-                </div>
-              </div>
-              <div class="col-12 text-end">
-                <button type="submit" class="btn btn-primary">Add Trade</button>
-              </div>
-            </form>
-            <!-- Trades List -->
-            <div>
               <h5>This Month's Trades</h5>
               <div class="table-responsive">
                 <table class="table table-bordered align-middle" id="tradesTable">
