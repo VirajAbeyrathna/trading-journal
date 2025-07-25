@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="row flex-nowrap">
+      <!-- Sidebar -->
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-primary text-white min-vh-100" id="sidebar">
+        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3">
+          <!-- Navigation Links -->
+          <ul class="nav nav-pills flex-column w-100">
+            <li class="nav-item">
+              <a href="#home" class="nav-link text-white active">
+                <i class="fa-solid fa-house me-2"></i> Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="analysis.html" class="nav-link text-white">
+                <i class="fa-solid fa-chart-line me-2"></i> Analysis
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="settings.html" class="nav-link text-white">
+                <i class="fa-solid fa-gear me-2"></i> Settings
+              </a>
+            </li>
+          </ul>
+          <!-- Toggle Button -->
+          <button id="sidebarToggle" class="btn btn-outline-light mt-auto">
+            <i class="fa fa-angle-double-left"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Main Content -->
+      <div class="col py-3">
+        <!-- Top Menu -->
+        <nav class="navbar navbar-expand-lg" style="background: #f8f9fa; border-radius: 0.5rem; box-shadow: none;">
+          <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1 fw-bold" style="color: #222; font-size: 1.8rem;">Trading Journal</span>
+          </div>
+        </nav>
+        <!-- Weekly Days Bar -->
+        <div class="mb-4" id="weekBar"></div>
+        <!-- Tab Content -->
+        <div class="tab-content" id="tabContent">
+          <div class="tab-pane fade show active" id="home">
+            <!-- Home tab content will go here -->
+            <h3>Home</h3>
+            <form id="addTradeForm" class="row g-3 mb-4">
+              <div class="col-md-3">
+                <label for="instrument" class="form-label">Instrument</label>
+                <select class="form-select" id="instrument">
+                  <option value="NASDAQ">NASDAQ</option>
+                  <option value="S&P500">S&amp;P500</option>
+                  <option value="DOWJONES">DOWJONES</option>
+                  <option value="add">+ Add New</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label for="strategy" class="form-label">Strategy</label>
+                <select class="form-select" id="strategy">
+                  <option value="Breakout">Breakout</option>
+                  <option value="Reversal">Reversal</option>
+                  <option value="Scalping">Scalping</option>
+                  <option value="add">+ Add New</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="rr" class="form-label">RR</label>
+                <select class="form-select" id="rr">
+                  <option value="1RR">1RR</option>
+                  <option value="2RR">2RR</option>
+                  <option value="3RR">3RR</option>
+                  <option value="5RR">5RR</option>
+                  <option value="add">+ Add New</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="tradeDate" class="form-label">Date</label>
+                <div class="input-group">
+                  <button class="btn btn-outline-secondary" type="button" id="prevDate" title="Previous Date">
+                    <span class="bi bi-chevron-left"></span>
+                  </button>
+                  <input type="date" class="form-control" id="tradeDate">
+                  <button class="btn btn-outline-secondary" type="button" id="nextDate" title="Next Date">
+                    <span class="bi bi-chevron-right"></span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Result</label>
+                <div class="btn-group w-100" role="group" aria-label="Profit or Loss">
+                  <input type="radio" class="btn-check" name="result" id="profit" value="profit" autocomplete="off" checked>
+                  <label class="btn btn-outline-success" for="profit">Profit (+)</label>
+                  <input type="radio" class="btn-check" name="result" id="loss" value="loss" autocomplete="off">
+                  <label class="btn btn-outline-danger" for="loss">Loss (–)</label>
+                </div>
+              </div>
+              <div class="col-12 text-end">
+                <button type="submit" class="btn btn-primary">Add Trade</button>
+              </div>
+            </form>
+            <!-- Trades List -->
+            <div>
+              <h5>This Month's Trades</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered align-middle" id="tradesTable">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Date</th>
+                      <th>Instrument</th>
+                      <th>Strategy</th>
+                      <th>RR</th>
+                      <th>Result</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Trades will be rendered here by JS -->
+                  </tbody>
+                </table>
+              </div>
+              <button class="btn btn-link" id="seeMoreBtn" style="display:none;">See More</button>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="analysis">
+            <h3>Analysis</h3>
+            <div class="mb-3">
+              <label for="analysisStrategy" class="form-label">Strategy</label>
+              <select class="form-select w-auto d-inline-block" id="analysisStrategy">
+                <option value="all">All</option>
+                <option value="Breakout">Breakout</option>
+                <option value="Reversal">Reversal</option>
+                <option value="Scalping">Scalping</option>
+              </select>
+            </div>
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="card p-3 mb-3">
+                  <h5>Daily RR Graph (Last 30 Days)</h5>
+                  <canvas id="dailyRRChart" height="150"></canvas>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card p-3 mb-3">
+                  <h5>Weekly RR Graph</h5>
+                  <canvas id="weeklyRRChart" height="180"></canvas>
+                </div>
+                <div class="card p-3 mb-3">
+                  <h5>Weekly RR Table</h5>
+                  <div id="weeklyRRTable">(Table will be here)</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card p-3 mb-3">
+                  <h5>Monthly RR Graph</h5>
+                  <canvas id="monthlyRRChart" height="180"></canvas>
+                </div>
+                <div class="card p-3 mb-3">
+                  <h5>Monthly RR Table</h5>
+                  <div id="monthlyRRTable">(Table will be here)</div>
+                </div>
+                <div class="card p-3 mb-3">
+                  <h5>Max Profit/Loss Streak</h5>
+                  <div id="maxStreak">(Streak info will be here)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="report">
+            <h3>Report</h3>
+            <div class="card p-3 mb-3">
+              <p>Generate and save a PDF report of all trades and analysis. (Feature coming soon!)</p>
+              <button class="btn btn-primary" disabled>Generate Report</button>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="settings">
+            <!-- Settings tab content will go here -->
+            <h3>Settings</h3>
+            <div class="mb-3">
+              <button class="btn btn-outline-dark" id="themeSwitcher">Switch Theme</button>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Theme</label>
+              <div class="btn-group" role="group" aria-label="Theme selector">
+                <button type="button" class="btn btn-primary theme-btn" data-theme="default" style="background: linear-gradient(90deg, #4f8cff 60%, #1e3c72 100%);">Default</button>
+                <button type="button" class="btn btn-primary theme-btn" data-theme="ocean" style="background: linear-gradient(90deg, #00b4d8 60%, #0077b6 100%);">Ocean</button>
+                <button type="button" class="btn btn-primary theme-btn" data-theme="forest" style="background: linear-gradient(90deg, #43e97b 60%, #38b000 100%);">Forest</button>
+                <button type="button" class="btn btn-primary theme-btn" data-theme="sunset" style="background: linear-gradient(90deg, #ff6b6b 60%, #ffb347 100%);">Sunset</button>
+                <button type="button" class="btn btn-primary theme-btn" data-theme="midnight" style="background: linear-gradient(90deg, #23283a 60%, #4f8cff 100%); color: #fff;">Midnight</button>
+                <button type="button" class="btn btn-primary theme-btn" data-theme="lavender" style="background: linear-gradient(90deg, #a78bfa 60%, #7c3aed 100%);">Lavender</button>
+                <button type="button" class="btn btn-primary theme-btn" data-theme="coral" style="background: linear-gradient(90deg, #ffb199 60%, #ff7f50 100%);">Coral</button>
+                <button type="button" class="btn btn-primary theme-btn" data-theme="slate" style="background: linear-gradient(90deg, #64748b 60%, #334155 100%);">Slate</button>
+                <button type="button" class="btn btn-primary theme-btn" data-theme="rose" style="background: linear-gradient(90deg, #fda4af 60%, #f43f5e 100%);">Rose</button>
+                <button type="button" class="btn btn-primary theme-btn" data-theme="gold" style="background: linear-gradient(90deg, #fbbf24 60%, #f59e42 100%); color: #78350f;">Gold</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
