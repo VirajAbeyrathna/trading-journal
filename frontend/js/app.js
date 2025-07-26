@@ -1,53 +1,45 @@
-// Sidebar hamburger open/close logic
+// Sidebar collapse/expand logic with mouse hover and top menu button
+// Remove old hamburger logic
+
 document.addEventListener('DOMContentLoaded', function () {
   const sidebar = document.getElementById('sidebar');
-  const hamburger = document.getElementById('sidebarHamburger');
+  const sidebarMenuBtn = document.getElementById('sidebarMenuBtn');
   let isCollapsed = false;
 
-  // Collapse sidebar by default on small screens
-  function autoCollapseSidebar() {
-    if (window.innerWidth <= 768) {
+  function setSidebarCollapsed(collapsed) {
+    if (collapsed) {
       sidebar.classList.add('collapsed');
       isCollapsed = true;
     } else {
       sidebar.classList.remove('collapsed');
       isCollapsed = false;
     }
-    updateHamburgerVisibility();
   }
-  function updateHamburgerVisibility() {
-    if (sidebar.classList.contains('collapsed')) {
-      hamburger.style.display = 'flex';
+  // Collapse by default on desktop
+  if (window.innerWidth > 768) {
+    setSidebarCollapsed(true);
+  }
+  window.addEventListener('resize', function () {
+    if (window.innerWidth <= 768) {
+      setSidebarCollapsed(true);
     } else {
-      hamburger.style.display = 'none';
+      setSidebarCollapsed(true);
     }
-  }
-  autoCollapseSidebar();
-  window.addEventListener('resize', autoCollapseSidebar);
-
-  // Expand sidebar on mouse enter, collapse on mouse leave
+  });
+  // Mouse hover to expand/collapse
   sidebar.addEventListener('mouseenter', function () {
-    sidebar.classList.remove('collapsed');
-    updateHamburgerVisibility();
+    setSidebarCollapsed(false);
   });
   sidebar.addEventListener('mouseleave', function () {
     if (window.innerWidth > 768) {
-      sidebar.classList.add('collapsed');
-      updateHamburgerVisibility();
+      setSidebarCollapsed(true);
     }
   });
-
-  // Hamburger click to open sidebar
-  hamburger.addEventListener('click', function (e) {
-    sidebar.classList.remove('collapsed');
-    updateHamburgerVisibility();
-  });
-
-  // Start collapsed on desktop for modern look
-  if (window.innerWidth > 768) {
-    sidebar.classList.add('collapsed');
-    isCollapsed = true;
-    updateHamburgerVisibility();
+  // Top menu button to expand sidebar
+  if (sidebarMenuBtn) {
+    sidebarMenuBtn.addEventListener('click', function () {
+      setSidebarCollapsed(false);
+    });
   }
 });
 // Sidebar auto-collapse and expand on mouse hover
@@ -82,20 +74,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (window.innerWidth > 768) {
     sidebar.classList.add('collapsed');
     isCollapsed = true;
-  }
-});
-// Sidebar collapse/expand logic
-document.addEventListener('DOMContentLoaded', function () {
-  const sidebar = document.getElementById('sidebar');
-  const toggleBtn = document.getElementById('sidebarToggle');
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', function () {
-      sidebar.classList.toggle('sidebar-collapsed');
-    });
-  }
-  // Optional: Collapse sidebar by default on small screens
-  if (window.innerWidth < 768) {
-    sidebar.classList.add('sidebar-collapsed');
   }
 });
 // JS for Trading Journal app
@@ -610,4 +588,4 @@ renderTrades = function() {
   renderAnalysis();
 };
 
-document.addEventListener('DOMContentLoaded', renderAnalysis); 
+document.addEventListener('DOMContentLoaded', renderAnalysis);
